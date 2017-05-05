@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron" style="margin:auto">
+    <button id="connectButton" type="button" class="btn btn-primary btn-lg" onclick="location.href='@Url.Action("connectToApi", "Home")'">Connect to API</button>
+</div>
+<div id="msg"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+            if('@ViewBag.MessageFromApi' != null)
+            {
+                $("#msg").html('<h1>' + '@ViewBag.MessageFromApi' + '</h1>');
+                if ('@ViewBag.MessageFromApi'.indexOf("Hello World") > -1) {
+                    $("#connectButton").removeClass("btn btn-primary btn-lg").addClass("btn btn-success btn-lg");
+                } else if ('@ViewBag.MessageFromApi'.indexOf("Oops!") > -1) {
+                    $("#connectButton").removeClass("btn btn-primary btn-lg").addClass("btn btn-danger btn-lg");
+                }
+            }
+    });
+</script>
+
